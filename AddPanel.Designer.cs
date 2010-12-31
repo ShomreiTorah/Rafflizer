@@ -73,7 +73,7 @@ namespace ShomreiTorah.Rafflizer {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, null, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, superToolTip1, true),
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "New person...", 90, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleLeft, ((System.Drawing.Image)(resources.GetObject("personSelector.Properties.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject2, "", null, superToolTip2, true)});
 			this.personSelector.Properties.NullValuePrompt = "Click here to add a ticket";
-			this.personSelector.Size = new System.Drawing.Size(410, 20);
+			this.personSelector.Size = new System.Drawing.Size(409, 20);
 			this.personSelector.TabIndex = 0;
 			this.personSelector.EditValueChanged += new System.EventHandler(this.personSelector_EditValueChanged);
 			this.personSelector.KeyDown += new System.Windows.Forms.KeyEventHandler(this.personSelector_KeyDown);
@@ -87,7 +87,7 @@ namespace ShomreiTorah.Rafflizer {
             0,
             0,
             0});
-			this.ticketId.Location = new System.Drawing.Point(412, 22);
+			this.ticketId.Location = new System.Drawing.Point(411, 22);
 			this.ticketId.Name = "ticketId";
 			this.ticketId.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
@@ -115,11 +115,11 @@ namespace ShomreiTorah.Rafflizer {
 			// isPaid
 			// 
 			this.isPaid.Dock = System.Windows.Forms.DockStyle.Right;
-			this.isPaid.Location = new System.Drawing.Point(485, 22);
+			this.isPaid.Location = new System.Drawing.Point(484, 22);
 			this.isPaid.Name = "isPaid";
 			this.isPaid.Properties.AutoWidth = true;
 			this.isPaid.Properties.Caption = "Paid?";
-			this.isPaid.Size = new System.Drawing.Size(45, 18);
+			this.isPaid.Size = new System.Drawing.Size(46, 18);
 			this.isPaid.TabIndex = 2;
 			this.isPaid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Controls_KeyDown);
 			this.isPaid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Controls_KeyPress);
@@ -137,7 +137,6 @@ namespace ShomreiTorah.Rafflizer {
 			this.comments.TabIndex = 3;
 			this.comments.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.comments_ButtonClick);
 			this.comments.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Controls_KeyDown);
-			this.comments.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Controls_KeyPress);
 			// 
 			// AddPanel
 			// 

@@ -32,7 +32,7 @@ namespace ShomreiTorah.Rafflizer {
 				personSelector.SelectedPerson = null;
 		}
 		private void Controls_KeyPress(object sender, KeyPressEventArgs e) {
-			if (e.KeyChar == '+') {
+			if (e.KeyChar == '+' || e.KeyChar == '=') {
 				e.Handled = true;
 				SetLastTicket();
 			}
@@ -60,7 +60,6 @@ namespace ShomreiTorah.Rafflizer {
 
 		private void comments_ButtonClick(object sender, ButtonPressedEventArgs e) { AddTicket(); }
 
-		//TODO: lastTicket field
 		RaffleTicket lastTicket;
 		void AddTicket() {
 			var idDup = tickets.Rows.FirstOrDefault(t => t.TicketId == ticketId.Value);
