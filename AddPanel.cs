@@ -31,6 +31,13 @@ namespace ShomreiTorah.Rafflizer {
 			if (e.KeyCode == Keys.Escape)
 				personSelector.SelectedPerson = null;
 		}
+		private void Controls_KeyPress(object sender, KeyPressEventArgs e) {
+			if (e.KeyChar == '+') {
+				e.Handled = true;
+				SetLastTicket();
+			}
+		}
+
 		private void Controls_KeyDown(object sender, KeyEventArgs e) {
 			if (e.KeyCode == Keys.Enter)
 				AddTicket();
@@ -39,9 +46,22 @@ namespace ShomreiTorah.Rafflizer {
 				personSelector.Focus();
 			}
 		}
+
+		void SetLastTicket() {
+			if (lastTicket == null) {
+				Dialog.Inform("No tickets have been added.");
+				return;
+			}
+			personSelector.SelectedPerson = lastTicket.Person;
+			//TicketID is set by personSelector_EditValueChanged
+			isPaid.Checked = lastTicket.Paid;
+			comments.Text = lastTicket.Comments;
+		}
+
 		private void comments_ButtonClick(object sender, ButtonPressedEventArgs e) { AddTicket(); }
 
 		//TODO: lastTicket field
+		RaffleTicket lastTicket;
 		void AddTicket() {
 			var idDup = tickets.Rows.FirstOrDefault(t => t.TicketId == ticketId.Value);
 			if (idDup != null) {
@@ -54,7 +74,7 @@ namespace ShomreiTorah.Rafflizer {
 
 			if (personSelector.SelectedPerson == null) return;
 
-			Program.Table<RaffleTicket>().Rows.Add(new RaffleTicket {
+			Program.Table<RaffleTicket>().Rows.Add(lastTicket = new RaffleTicket {
 				Year = year,
 				Person = personSelector.SelectedPerson,
 				TicketId = (int)ticketId.Value,
