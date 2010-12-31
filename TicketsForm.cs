@@ -1,21 +1,17 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
+using System.Globalization;
+using System.Linq;
 using DevExpress.XtraEditors;
-using ShomreiTorah.Singularity;
 using ShomreiTorah.Data;
+using ShomreiTorah.Singularity;
 
 namespace ShomreiTorah.Rafflizer {
 	partial class TicketsForm : XtraForm {
-		readonly int year;
 		FilteredTable<RaffleTicket> tickets;
 		public TicketsForm(int year) {
 			InitializeComponent();
-			this.year = year;
 			Text = year + " Tickets";
 
 			tickets = Program.Table<RaffleTicket>().Filter(t => t.Year == year);
@@ -24,18 +20,57 @@ namespace ShomreiTorah.Rafflizer {
 			addPanel.SetData(year, tickets);
 
 			tickets.RowAdded += Tickets_RowAdded;
+			tickets.RowRemoved += Tickets_RowRemoved;
+			UpdateStats();
 		}
 
 		void Tickets_RowAdded(object sender, RowListEventArgs<RaffleTicket> e) {
 			if (tickets.Rows.Count < 3)
 				gridView.BestFitColumns();
+			UpdateStats();
+		}
+		void Tickets_RowRemoved(object sender, RowListEventArgs<RaffleTicket> e) {
+			UpdateStats();
+		}
+
+		void UpdateStats() {
+			ticketCount.Caption = tickets.Rows.Count + " Tickets";
+			totalValue.Caption = "Total value: " +
+				tickets.Rows.GroupBy(t => t.Person, (person, set) => set.Count())
+							.Sum(c => RaffleTicket.CalcPrice(c))
+							.ToString("c0", CultureInfo.CurrentCulture)
+
+			   + "; paid: "
+			   + tickets.Rows.Where(t => t.Paid)
+							 .GroupBy(t => t.Person, (person, set) => set.Count())
+							 .Sum(c => RaffleTicket.CalcPrice(c))
+							 .ToString("c0", CultureInfo.CurrentCulture);
+
+			IList<string> idHoles;
+			if (tickets.Rows.Count == 0)
+				idHoles = new string[0];
+			else
+				idHoles = Enumerable.Range(1, tickets.Rows.Max(t => t.TicketId))
+									.Except(tickets.Rows.Select(t => t.TicketId))
+									.Select(i => i.ToString(CultureInfo.CurrentCulture)).ToList();
+
+			if (idHoles.Count == 0) {
+				holeMessage.Caption = "No Holes";
+				holeMessage.Appearance.ForeColor = Color.Green;
+			} else if (idHoles.Count == 1) {
+				holeMessage.Appearance.ForeColor = Color.Red;
+				holeMessage.Caption = "Ticket #" + idHoles[0] + " is missing";
+			} else {
+				holeMessage.Appearance.ForeColor = Color.Red;
+				holeMessage.Caption = "Holes: " + String.Join(",  ", idHoles);
+			}
 		}
 
 		///<summary>Releases the unmanaged resources used by the TicketsForm and optionally releases the managed resources.</summary>
 		///<param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
 		protected override void Dispose(bool disposing) {
 			if (disposing) {
-				tickets.Dispose();			
+				tickets.Dispose();
 				if (components != null) components.Dispose();
 			}
 			base.Dispose(disposing);

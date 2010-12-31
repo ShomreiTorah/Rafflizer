@@ -15,8 +15,12 @@ namespace ShomreiTorah.Rafflizer {
 			this.components = new System.ComponentModel.Container();
 			this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
 			this.exportExcel = new DevExpress.XtraBars.BarButtonItem();
+			this.holeMessage = new DevExpress.XtraBars.BarStaticItem();
+			this.ticketCount = new DevExpress.XtraBars.BarStaticItem();
+			this.totalValue = new DevExpress.XtraBars.BarStaticItem();
 			this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
 			this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+			this.ribbonStatusBar1 = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
 			this.grid = new ShomreiTorah.Data.UI.Grid.SmartGrid(this.components);
 			this.gridView = new ShomreiTorah.Data.UI.Grid.SmartGridView();
 			this.colPerson = new ShomreiTorah.Data.UI.Grid.SmartGridColumn();
@@ -42,15 +46,19 @@ namespace ShomreiTorah.Rafflizer {
 			this.ribbonControl1.ExpandCollapseItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText;
 			this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
-            this.exportExcel});
+            this.exportExcel,
+            this.holeMessage,
+            this.ticketCount,
+            this.totalValue});
 			this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-			this.ribbonControl1.MaxItemId = 2;
+			this.ribbonControl1.MaxItemId = 5;
 			this.ribbonControl1.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
 			this.ribbonControl1.Name = "ribbonControl1";
 			this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
 			this.ribbonControl1.SelectedPage = this.ribbonPage1;
 			this.ribbonControl1.Size = new System.Drawing.Size(658, 114);
+			this.ribbonControl1.StatusBar = this.ribbonStatusBar1;
 			this.ribbonControl1.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
 			// 
 			// exportExcel
@@ -59,6 +67,31 @@ namespace ShomreiTorah.Rafflizer {
 			this.exportExcel.Id = 1;
 			this.exportExcel.LargeGlyph = global::ShomreiTorah.Rafflizer.Properties.Resources.ExportExcel32;
 			this.exportExcel.Name = "exportExcel";
+			// 
+			// holeMessage
+			// 
+			this.holeMessage.Appearance.ForeColor = System.Drawing.Color.Green;
+			this.holeMessage.Appearance.Options.UseForeColor = true;
+			this.holeMessage.Caption = "No holes";
+			this.holeMessage.Id = 2;
+			this.holeMessage.Name = "holeMessage";
+			this.holeMessage.TextAlignment = System.Drawing.StringAlignment.Near;
+			// 
+			// ticketCount
+			// 
+			this.ticketCount.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+			this.ticketCount.Caption = "n Tickets";
+			this.ticketCount.Id = 3;
+			this.ticketCount.Name = "ticketCount";
+			this.ticketCount.TextAlignment = System.Drawing.StringAlignment.Near;
+			// 
+			// totalValue
+			// 
+			this.totalValue.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+			this.totalValue.Caption = "Total: $n";
+			this.totalValue.Id = 4;
+			this.totalValue.Name = "totalValue";
+			this.totalValue.TextAlignment = System.Drawing.StringAlignment.Near;
 			// 
 			// ribbonPage1
 			// 
@@ -74,6 +107,16 @@ namespace ShomreiTorah.Rafflizer {
 			this.ribbonPageGroup1.ShowCaptionButton = false;
 			this.ribbonPageGroup1.Text = "Raffle";
 			// 
+			// ribbonStatusBar1
+			// 
+			this.ribbonStatusBar1.ItemLinks.Add(this.holeMessage);
+			this.ribbonStatusBar1.ItemLinks.Add(this.ticketCount);
+			this.ribbonStatusBar1.ItemLinks.Add(this.totalValue);
+			this.ribbonStatusBar1.Location = new System.Drawing.Point(0, 411);
+			this.ribbonStatusBar1.Name = "ribbonStatusBar1";
+			this.ribbonStatusBar1.Ribbon = this.ribbonControl1;
+			this.ribbonStatusBar1.Size = new System.Drawing.Size(658, 25);
+			// 
 			// grid
 			// 
 			this.grid.DataMember = "RaffleTickets";
@@ -82,8 +125,8 @@ namespace ShomreiTorah.Rafflizer {
 			this.grid.MainView = this.gridView;
 			this.grid.MenuManager = this.ribbonControl1;
 			this.grid.Name = "grid";
-			this.grid.RegistrationCount = 47;
-			this.grid.Size = new System.Drawing.Size(658, 278);
+			this.grid.RegistrationCount = 48;
+			this.grid.Size = new System.Drawing.Size(658, 253);
 			this.grid.TabIndex = 1;
 			this.grid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView});
@@ -114,7 +157,7 @@ namespace ShomreiTorah.Rafflizer {
 			this.colPerson.ShowEditorOnMouseDown = true;
 			this.colPerson.Visible = true;
 			this.colPerson.VisibleIndex = 0;
-			this.colPerson.Width = 65;
+			this.colPerson.Width = 52;
 			// 
 			// colDateAdded
 			// 
@@ -132,7 +175,7 @@ namespace ShomreiTorah.Rafflizer {
 			this.colTicketId.Name = "colTicketId";
 			this.colTicketId.Visible = true;
 			this.colTicketId.VisibleIndex = 2;
-			this.colTicketId.Width = 60;
+			this.colTicketId.Width = 73;
 			// 
 			// colPaid
 			// 
@@ -172,6 +215,7 @@ namespace ShomreiTorah.Rafflizer {
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(658, 436);
 			this.Controls.Add(this.grid);
+			this.Controls.Add(this.ribbonStatusBar1);
 			this.Controls.Add(this.addPanel);
 			this.Controls.Add(this.ribbonControl1);
 			this.KeyPreview = true;
@@ -199,5 +243,9 @@ namespace ShomreiTorah.Rafflizer {
 		private Data.UI.Grid.SmartGridColumn colComments;
 		private Data.UI.Grid.SmartGridColumn colRowId;
 		private AddPanel addPanel;
+		private DevExpress.XtraBars.BarStaticItem holeMessage;
+		private DevExpress.XtraBars.BarStaticItem ticketCount;
+		private DevExpress.XtraBars.BarStaticItem totalValue;
+		private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar1;
 	}
 }
