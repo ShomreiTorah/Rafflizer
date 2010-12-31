@@ -5,17 +5,6 @@ namespace ShomreiTorah.Rafflizer {
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-		protected override void Dispose(bool disposing) {
-			if (disposing && (components != null)) {
-				components.Dispose();
-			}
-			base.Dispose(disposing);
-		}
-
 		#region Windows Form Designer generated code
 
 		/// <summary>
@@ -24,10 +13,191 @@ namespace ShomreiTorah.Rafflizer {
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
+			this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
+			this.exportExcel = new DevExpress.XtraBars.BarButtonItem();
+			this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+			this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+			this.grid = new ShomreiTorah.Data.UI.Grid.SmartGrid(this.components);
+			this.gridView = new ShomreiTorah.Data.UI.Grid.SmartGridView();
+			this.colPerson = new ShomreiTorah.Data.UI.Grid.SmartGridColumn();
+			this.colDateAdded = new ShomreiTorah.Data.UI.Grid.SmartGridColumn();
+			this.colTicketId = new ShomreiTorah.Data.UI.Grid.SmartGridColumn();
+			this.colPaid = new ShomreiTorah.Data.UI.Grid.SmartGridColumn();
+			this.colComments = new ShomreiTorah.Data.UI.Grid.SmartGridColumn();
+			this.colRowId = new ShomreiTorah.Data.UI.Grid.SmartGridColumn();
+			this.addPanel = new ShomreiTorah.Rafflizer.AddPanel();
+			((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
+			this.SuspendLayout();
+			// 
+			// ribbonControl1
+			// 
+			this.ribbonControl1.ApplicationButtonText = null;
+			// 
+			// 
+			// 
+			this.ribbonControl1.ExpandCollapseItem.Id = 0;
+			this.ribbonControl1.ExpandCollapseItem.Name = "";
+			this.ribbonControl1.ExpandCollapseItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText;
+			this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.ribbonControl1.ExpandCollapseItem,
+            this.exportExcel});
+			this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
+			this.ribbonControl1.MaxItemId = 2;
+			this.ribbonControl1.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
+			this.ribbonControl1.Name = "ribbonControl1";
+			this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
+            this.ribbonPage1});
+			this.ribbonControl1.SelectedPage = this.ribbonPage1;
+			this.ribbonControl1.Size = new System.Drawing.Size(658, 114);
+			this.ribbonControl1.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
+			// 
+			// exportExcel
+			// 
+			this.exportExcel.Caption = "Export to Excel";
+			this.exportExcel.Id = 1;
+			this.exportExcel.LargeGlyph = global::ShomreiTorah.Rafflizer.Properties.Resources.ExportExcel32;
+			this.exportExcel.Name = "exportExcel";
+			// 
+			// ribbonPage1
+			// 
+			this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup1});
+			this.ribbonPage1.Name = "ribbonPage1";
+			this.ribbonPage1.Text = "Data";
+			// 
+			// ribbonPageGroup1
+			// 
+			this.ribbonPageGroup1.ItemLinks.Add(this.exportExcel);
+			this.ribbonPageGroup1.Name = "ribbonPageGroup1";
+			this.ribbonPageGroup1.ShowCaptionButton = false;
+			this.ribbonPageGroup1.Text = "Raffle";
+			// 
+			// grid
+			// 
+			this.grid.DataMember = "RaffleTickets";
+			this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.grid.Location = new System.Drawing.Point(0, 158);
+			this.grid.MainView = this.gridView;
+			this.grid.MenuManager = this.ribbonControl1;
+			this.grid.Name = "grid";
+			this.grid.RegistrationCount = 47;
+			this.grid.Size = new System.Drawing.Size(658, 278);
+			this.grid.TabIndex = 1;
+			this.grid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView});
+			// 
+			// gridView
+			// 
+			this.gridView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colPerson,
+            this.colDateAdded,
+            this.colTicketId,
+            this.colPaid,
+            this.colComments});
+			this.gridView.GridControl = this.grid;
+			this.gridView.Name = "gridView";
+			this.gridView.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colTicketId, DevExpress.Data.ColumnSortOrder.Descending)});
+			// 
+			// colPerson
+			// 
+			this.colPerson.AllowKeyboardActivation = false;
+			this.colPerson.FieldName = "Person";
+			this.colPerson.Name = "colPerson";
+			this.colPerson.OptionsColumn.AllowEdit = false;
+			this.colPerson.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.True;
+			this.colPerson.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.True;
+			this.colPerson.OptionsColumn.ReadOnly = true;
+			this.colPerson.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
+			this.colPerson.ShowEditorOnMouseDown = true;
+			this.colPerson.Visible = true;
+			this.colPerson.VisibleIndex = 0;
+			this.colPerson.Width = 65;
+			// 
+			// colDateAdded
+			// 
+			this.colDateAdded.FieldName = "DateAdded";
+			this.colDateAdded.Name = "colDateAdded";
+			this.colDateAdded.OptionsColumn.AllowEdit = false;
+			this.colDateAdded.OptionsColumn.ReadOnly = true;
+			this.colDateAdded.Visible = true;
+			this.colDateAdded.VisibleIndex = 1;
+			this.colDateAdded.Width = 76;
+			// 
+			// colTicketId
+			// 
+			this.colTicketId.FieldName = "TicketId";
+			this.colTicketId.Name = "colTicketId";
+			this.colTicketId.Visible = true;
+			this.colTicketId.VisibleIndex = 2;
+			this.colTicketId.Width = 60;
+			// 
+			// colPaid
+			// 
+			this.colPaid.FieldName = "Paid";
+			this.colPaid.Name = "colPaid";
+			this.colPaid.OptionsColumn.FixedWidth = true;
+			this.colPaid.Visible = true;
+			this.colPaid.VisibleIndex = 3;
+			this.colPaid.Width = 50;
+			// 
+			// colComments
+			// 
+			this.colComments.FieldName = "Comments";
+			this.colComments.Name = "colComments";
+			this.colComments.Visible = true;
+			this.colComments.VisibleIndex = 4;
+			this.colComments.Width = 69;
+			// 
+			// colRowId
+			// 
+			this.colRowId.FieldName = "RowId";
+			this.colRowId.Name = "colRowId";
+			this.colRowId.Visible = true;
+			this.colRowId.VisibleIndex = 0;
+			// 
+			// addPanel
+			// 
+			this.addPanel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.addPanel.Location = new System.Drawing.Point(0, 114);
+			this.addPanel.Name = "addPanel";
+			this.addPanel.Size = new System.Drawing.Size(658, 44);
+			this.addPanel.TabIndex = 3;
+			// 
+			// TicketsForm
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(658, 436);
+			this.Controls.Add(this.grid);
+			this.Controls.Add(this.addPanel);
+			this.Controls.Add(this.ribbonControl1);
+			this.KeyPreview = true;
+			this.Name = "TicketsForm";
 			this.Text = "TicketsForm";
+			((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.gridView)).EndInit();
+			this.ResumeLayout(false);
+
 		}
 
 		#endregion
+
+		private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
+		private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
+		private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+		private DevExpress.XtraBars.BarButtonItem exportExcel;
+		private Data.UI.Grid.SmartGrid grid;
+		private Data.UI.Grid.SmartGridView gridView;
+		private Data.UI.Grid.SmartGridColumn colPerson;
+		private Data.UI.Grid.SmartGridColumn colDateAdded;
+		private Data.UI.Grid.SmartGridColumn colTicketId;
+		private Data.UI.Grid.SmartGridColumn colPaid;
+		private Data.UI.Grid.SmartGridColumn colComments;
+		private Data.UI.Grid.SmartGridColumn colRowId;
+		private AddPanel addPanel;
 	}
 }

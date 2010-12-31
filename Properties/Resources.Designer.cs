@@ -60,9 +60,23 @@ namespace ShomreiTorah.Rafflizer.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap ExportExcel32 {
+            get {
+                object obj = ResourceManager.GetObject("ExportExcel32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Grid32 {
             get {
                 object obj = ResourceManager.GetObject("Grid32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Plus13 {
+            get {
+                object obj = ResourceManager.GetObject("Plus13", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

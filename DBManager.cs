@@ -6,7 +6,7 @@ using ShomreiTorah.Common;
 using ShomreiTorah.Singularity;
 using ShomreiTorah.Singularity.Sql;
 namespace ShomreiTorah.Rafflizer {
-	class DBManager {
+	static class DBManager {
 		///<summary>Creates the tables needed in a database.</summary>
 		public static void SetupDatabase(DataSyncContext context) {
 			using (var connection = context.SqlProvider.OpenConnection())

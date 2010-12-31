@@ -8,6 +8,7 @@ using DevExpress.Skins;
 using ShomreiTorah.Common;
 using ShomreiTorah.Data;
 using ShomreiTorah.Data.UI;
+using ShomreiTorah.Data.UI.Forms;
 using ShomreiTorah.Singularity;
 using ShomreiTorah.Singularity.Sql;
 using ShomreiTorah.WinForms;
@@ -39,6 +40,7 @@ namespace ShomreiTorah.Rafflizer {
 			OfficeSkins.Register();
 			SkinManager.EnableFormSkins();
 			UserLookAndFeel.Default.SkinName = "Office 2010 Blue";
+			RegisterRowDetail<Person>(p => new SimplePersonDetails(p).Show(MainForm));
 		}
 
 		protected override Form CreateMainForm() { return new MainForm(); }
@@ -48,14 +50,17 @@ namespace ShomreiTorah.Rafflizer {
 			dc.Tables.AddTable(Person.CreateTable());
 			dc.Tables.AddTable(RaffleTicket.CreateTable());
 
-			var dsc = new DataSyncContext(dc, new SqlCeSqlProvider(FilePath));
+			var dsc = new DataSyncContext(dc, new SqlServerSqlProvider(DB.Default));
+			//var dsc = new DataSyncContext(dc, new SqlCeSqlProvider(FilePath));
+
 			dsc.Tables.AddPrimaryMappings();
-			if (!File.Exists(FilePath)) {
-				DB.CreateFile(FilePath, DatabaseFile.SqlCe);
-				try {
-					DBManager.SetupDatabase(dsc);
-				} catch { File.Delete(FilePath); }
-			}
+
+			//if (!File.Exists(FilePath)) {
+			//    DB.CreateFile(FilePath, DatabaseFile.SqlCe);
+			//    try {
+			//        DBManager.SetupDatabase(dsc);
+			//    } catch { File.Delete(FilePath); }
+			//}
 
 			return dsc;
 		}
