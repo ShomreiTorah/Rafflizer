@@ -20,6 +20,7 @@ namespace ShomreiTorah.Rafflizer {
 			addPanel.SetData(year, tickets);
 
 			tickets.RowAdded += Tickets_RowAdded;
+			tickets.ValueChanged += Tickets_ValueChanged;
 			tickets.RowRemoved += Tickets_RowRemoved;
 			UpdateStats();
 		}
@@ -29,9 +30,8 @@ namespace ShomreiTorah.Rafflizer {
 				gridView.BestFitColumns();
 			UpdateStats();
 		}
-		void Tickets_RowRemoved(object sender, RowListEventArgs<RaffleTicket> e) {
-			UpdateStats();
-		}
+		void Tickets_ValueChanged(object sender, ValueChangedEventArgs<RaffleTicket> e) { UpdateStats(); }
+		void Tickets_RowRemoved(object sender, RowListEventArgs<RaffleTicket> e) { UpdateStats(); }
 
 		void UpdateStats() {
 			ticketCount.Caption = tickets.Rows.Count + " Tickets";
