@@ -141,6 +141,7 @@ namespace ShomreiTorah.Rafflizer {
             this.colComments});
 			this.gridView.GridControl = this.grid;
 			this.gridView.Name = "gridView";
+			this.gridView.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.Click;
 			this.gridView.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colTicketId, DevExpress.Data.ColumnSortOrder.Descending)});
 			// 
@@ -161,6 +162,8 @@ namespace ShomreiTorah.Rafflizer {
 			// 
 			// colDateAdded
 			// 
+			this.colDateAdded.DisplayFormat.FormatString = "G";
+			this.colDateAdded.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
 			this.colDateAdded.FieldName = "DateAdded";
 			this.colDateAdded.Name = "colDateAdded";
 			this.colDateAdded.OptionsColumn.AllowEdit = false;
@@ -182,6 +185,7 @@ namespace ShomreiTorah.Rafflizer {
 			this.colPaid.FieldName = "Paid";
 			this.colPaid.Name = "colPaid";
 			this.colPaid.OptionsColumn.FixedWidth = true;
+			this.colPaid.ShowEditorOnMouseDown = true;
 			this.colPaid.Visible = true;
 			this.colPaid.VisibleIndex = 3;
 			this.colPaid.Width = 50;
@@ -190,6 +194,7 @@ namespace ShomreiTorah.Rafflizer {
 			// 
 			this.colComments.FieldName = "Comments";
 			this.colComments.Name = "colComments";
+			this.colComments.ShowEditorOnMouseDown = true;
 			this.colComments.Visible = true;
 			this.colComments.VisibleIndex = 4;
 			this.colComments.Width = 69;
