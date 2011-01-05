@@ -28,8 +28,10 @@ namespace ShomreiTorah.Rafflizer {
 			this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
 			this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
 			this.showTickets = new DevExpress.XtraBars.BarButtonItem();
+			this.saveDB = new DevExpress.XtraBars.BarButtonItem();
 			this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
 			this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+			this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
 			((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
 			this.SuspendLayout();
@@ -49,15 +51,16 @@ namespace ShomreiTorah.Rafflizer {
 			this.ribbonControl1.ExpandCollapseItem.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText;
 			this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl1.ExpandCollapseItem,
-            this.showTickets});
+            this.showTickets,
+            this.saveDB});
 			this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-			this.ribbonControl1.MaxItemId = 2;
+			this.ribbonControl1.MaxItemId = 3;
 			this.ribbonControl1.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
 			this.ribbonControl1.Name = "ribbonControl1";
 			this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
 			this.ribbonControl1.SelectedPage = this.ribbonPage1;
-			this.ribbonControl1.Size = new System.Drawing.Size(706, 114);
+			this.ribbonControl1.Size = new System.Drawing.Size(706, 116);
 			this.ribbonControl1.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
 			// 
 			// showTickets
@@ -67,10 +70,21 @@ namespace ShomreiTorah.Rafflizer {
 			this.showTickets.LargeGlyph = global::ShomreiTorah.Rafflizer.Properties.Resources.Grid32;
 			this.showTickets.Name = "showTickets";
 			// 
+			// saveDB
+			// 
+			this.saveDB.Caption = "Save";
+			this.saveDB.Glyph = global::ShomreiTorah.Rafflizer.Properties.Resources.Save16;
+			this.saveDB.Id = 2;
+			this.saveDB.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S));
+			this.saveDB.LargeGlyph = global::ShomreiTorah.Rafflizer.Properties.Resources.Save32;
+			this.saveDB.Name = "saveDB";
+			this.saveDB.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.saveDB_ItemClick);
+			// 
 			// ribbonPage1
 			// 
 			this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup1});
+            this.ribbonPageGroup1,
+            this.ribbonPageGroup2});
 			this.ribbonPage1.Name = "ribbonPage1";
 			this.ribbonPage1.Text = "Data";
 			// 
@@ -80,6 +94,13 @@ namespace ShomreiTorah.Rafflizer {
 			this.ribbonPageGroup1.Name = "ribbonPageGroup1";
 			this.ribbonPageGroup1.ShowCaptionButton = false;
 			this.ribbonPageGroup1.Text = "Raffle";
+			// 
+			// ribbonPageGroup2
+			// 
+			this.ribbonPageGroup2.ItemLinks.Add(this.saveDB);
+			this.ribbonPageGroup2.Name = "ribbonPageGroup2";
+			this.ribbonPageGroup2.ShowCaptionButton = false;
+			this.ribbonPageGroup2.Text = "Database";
 			// 
 			// MainForm
 			// 
@@ -104,6 +125,8 @@ namespace ShomreiTorah.Rafflizer {
 		private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
 		private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
 		private DevExpress.XtraBars.BarButtonItem showTickets;
+		private DevExpress.XtraBars.BarButtonItem saveDB;
+		private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
 
 
 	}

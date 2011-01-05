@@ -124,6 +124,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
+    <None Include="Resources\Save16.png" />
+    <None Include="Resources\Save32.png" />
     <None Include="Resources\Plus13.png" />
     <None Include="Resources\ExportExcel32.png" />
     <None Include="Resources\Grid32.png" />

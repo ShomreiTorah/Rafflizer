@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using ShomreiTorah.Common;
 using ShomreiTorah.Data;
 using ShomreiTorah.Data.UI;
+using DevExpress.XtraBars;
 
 namespace ShomreiTorah.Rafflizer {
 	partial class MainForm : XtraForm {
@@ -23,5 +24,7 @@ namespace ShomreiTorah.Rafflizer {
 				defaultYear: DateTime.Now.AddMonths(5).Year	//We start using this in December of the previous year
 			);
 		}
+
+		private void saveDB_ItemClick(object sender, ItemClickEventArgs e) { Program.Current.SaveDatabase(); }
 	}
 }
