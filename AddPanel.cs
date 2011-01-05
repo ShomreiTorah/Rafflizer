@@ -17,10 +17,12 @@ namespace ShomreiTorah.Rafflizer {
 		public AddPanel() {
 			InitializeComponent();
 			SetState();
+			ticketId.KeyDown += TicketId_KeyDown;
 		}
+
 		public void SetData(int newYear, FilteredTable<RaffleTicket> datasource) {
 			if (datasource == null) throw new ArgumentNullException("datasource");
-			if (datasource.Rows.Any(t => t.Year != year))
+			if (datasource.Rows.Any(t => t.Year != newYear))
 				throw new ArgumentException("Wrong year", "datasource");
 
 			this.year = newYear;
@@ -35,6 +37,12 @@ namespace ShomreiTorah.Rafflizer {
 			if (e.KeyChar == '+' || e.KeyChar == '=') {
 				e.Handled = true;
 				SetLastTicket();
+			}
+		}
+		void TicketId_KeyDown(object sender, KeyEventArgs e) {
+			if (e.KeyCode == Keys.P) {
+				e.Handled = true;
+				isPaid.Checked = !isPaid.Checked;
 			}
 		}
 
