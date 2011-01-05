@@ -89,7 +89,8 @@ namespace ShomreiTorah.Rafflizer {
 				Comments = String.IsNullOrWhiteSpace(comments.Text) ? null : comments.Text,
 				DateAdded = DateTime.Now
 			});
-			InfoMessage.Show("Ticket #" + ticketId.Value + " was registered for " + personSelector.SelectedPerson.VeryFullName);
+			InfoMessage.Show("Ticket #" + ticketId.Value + " was registered for " + personSelector.SelectedPerson.VeryFullName 
+						   + ", " + (isPaid.Checked ? "paid" : "unpaid"));
 
 			if (ModifierKeys == Keys.Shift) {
 				ticketId.Value = NextID;
