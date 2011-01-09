@@ -1,8 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using DevExpress.XtraEditors;
 using ShomreiTorah.Data;
 using ShomreiTorah.Singularity;
@@ -46,23 +46,42 @@ namespace ShomreiTorah.Rafflizer {
 							 .Sum(c => RaffleTicket.CalcPrice(c))
 							 .ToString("c0", CultureInfo.CurrentCulture);
 
-			IList<string> idHoles;
+			List<int> idHoles;
 			if (tickets.Rows.Count == 0)
-				idHoles = new string[0];
+				idHoles = new List<int>();
 			else
 				idHoles = Enumerable.Range(1, tickets.Rows.Max(t => t.TicketId))
 									.Except(tickets.Rows.Select(t => t.TicketId))
-									.Select(i => i.ToString(CultureInfo.CurrentCulture)).ToList();
+									.ToList();
 
 			if (idHoles.Count == 0) {
 				holeMessage.Caption = "No Holes";
 				holeMessage.Appearance.ForeColor = Color.Green;
 			} else if (idHoles.Count == 1) {
 				holeMessage.Appearance.ForeColor = Color.Red;
-				holeMessage.Caption = "Ticket #" + idHoles[0] + " is missing";
+				holeMessage.Caption = "Ticket #" + idHoles[0].ToString(CultureInfo.CurrentCulture) + " is missing";
 			} else {
 				holeMessage.Appearance.ForeColor = Color.Red;
-				holeMessage.Caption = "Holes: " + String.Join(",  ", idHoles);
+				var message = new StringBuilder();
+
+				while (idHoles.Count > 0) {
+					var start = idHoles.First();
+					int size = 0;
+					while (size < idHoles.Count && idHoles[size] == start + size)
+						size++;
+
+					message.Append(message.Length == 0 ? "Holes: " : ", ");
+
+					message.Append(start);
+					if (size == 2)
+						message.Append(", ").Append(start + 1);
+					else if (size > 2)
+						message.Append(" - ").Append(start + size - 1);
+
+					idHoles.RemoveRange(0, size);
+				}
+
+				holeMessage.Caption = message.ToString();
 			}
 		}
 
