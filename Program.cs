@@ -50,17 +50,16 @@ namespace ShomreiTorah.Rafflizer {
 			dc.Tables.AddTable(Person.CreateTable());
 			dc.Tables.AddTable(RaffleTicket.CreateTable());
 
-			var dsc = new DataSyncContext(dc, new SqlServerSqlProvider(DB.Default));
-			//var dsc = new DataSyncContext(dc, new SqlCeSqlProvider(FilePath));
+			var dsc = new DataSyncContext(dc, new SqlCeSqlProvider(FilePath));
 
 			dsc.Tables.AddPrimaryMappings();
 
-			//if (!File.Exists(FilePath)) {
-			//    DB.CreateFile(FilePath, DatabaseFile.SqlCe);
-			//    try {
-			//        DBManager.SetupDatabase(dsc);
-			//    } catch { File.Delete(FilePath); }
-			//}
+			if (!File.Exists(FilePath)) {
+				DB.CreateFile(FilePath, DatabaseFile.SqlCe);
+				try {
+					DBManager.SetupDatabase(dsc);
+				} catch { File.Delete(FilePath); }
+			}
 
 			return dsc;
 		}

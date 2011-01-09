@@ -75,6 +75,7 @@
     <Compile Include="AddPanel.Designer.cs">
       <DependentUpon>AddPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="DBGallery.cs" />
     <Compile Include="DBManager.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -124,6 +125,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
+    <None Include="Resources\ServerPush16.png" />
+    <None Include="Resources\ServerPull16.png" />
+    <None Include="Resources\SmallDB.png" />
     <None Include="Resources\Save16.png" />
     <None Include="Resources\Save32.png" />
     <None Include="Resources\Plus13.png" />

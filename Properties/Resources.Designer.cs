@@ -94,5 +94,26 @@ namespace ShomreiTorah.Rafflizer.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        internal static System.Drawing.Bitmap ServerPull16 {
+            get {
+                object obj = ResourceManager.GetObject("ServerPull16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ServerPush16 {
+            get {
+                object obj = ResourceManager.GetObject("ServerPush16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap SmallDB {
+            get {
+                object obj = ResourceManager.GetObject("SmallDB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
