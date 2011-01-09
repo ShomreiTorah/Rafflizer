@@ -46,29 +46,30 @@ namespace ShomreiTorah.Rafflizer {
 							 .Sum(c => RaffleTicket.CalcPrice(c))
 							 .ToString("c0", CultureInfo.CurrentCulture);
 
-			List<int> idHoles;
+			Queue<int> idHoles;
 			if (tickets.Rows.Count == 0)
-				idHoles = new List<int>();
+				idHoles = new Queue<int>();
 			else
-				idHoles = Enumerable.Range(1, tickets.Rows.Max(t => t.TicketId))
-									.Except(tickets.Rows.Select(t => t.TicketId))
-									.ToList();
+				idHoles = new Queue<int>(Enumerable.Range(1, tickets.Rows.Max(t => t.TicketId))
+												   .Except(tickets.Rows.Select(t => t.TicketId)));
 
 			if (idHoles.Count == 0) {
 				holeMessage.Caption = "No Holes";
 				holeMessage.Appearance.ForeColor = Color.Green;
 			} else if (idHoles.Count == 1) {
 				holeMessage.Appearance.ForeColor = Color.Red;
-				holeMessage.Caption = "Ticket #" + idHoles[0].ToString(CultureInfo.CurrentCulture) + " is missing";
+				holeMessage.Caption = "Ticket #" + idHoles.First().ToString(CultureInfo.CurrentCulture) + " is missing";
 			} else {
 				holeMessage.Appearance.ForeColor = Color.Red;
 				var message = new StringBuilder();
 
 				while (idHoles.Count > 0) {
-					var start = idHoles.First();
-					int size = 0;
-					while (size < idHoles.Count && idHoles[size] == start + size)
+					var start = idHoles.Dequeue();
+					int size = 1;
+					while (idHoles.Count > 0 && idHoles.Peek() == start + size) {
+						idHoles.Dequeue();
 						size++;
+					}
 
 					message.Append(message.Length == 0 ? "Holes: " : ", ");
 
@@ -77,8 +78,6 @@ namespace ShomreiTorah.Rafflizer {
 						message.Append(", ").Append(start + 1);
 					else if (size > 2)
 						message.Append(" - ").Append(start + size - 1);
-
-					idHoles.RemoveRange(0, size);
 				}
 
 				holeMessage.Caption = message.ToString();
