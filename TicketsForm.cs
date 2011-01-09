@@ -46,12 +46,13 @@ namespace ShomreiTorah.Rafflizer {
 							 .Sum(c => RaffleTicket.CalcPrice(c))
 							 .ToString("c0", CultureInfo.CurrentCulture);
 
-			Queue<int> idHoles;
+			IList<int> idHoles;
 			if (tickets.Rows.Count == 0)
-				idHoles = new Queue<int>();
+				idHoles = new int[0];
 			else
-				idHoles = new Queue<int>(Enumerable.Range(1, tickets.Rows.Max(t => t.TicketId))
-												   .Except(tickets.Rows.Select(t => t.TicketId)));
+				idHoles = Enumerable.Range(1, tickets.Rows.Max(t => t.TicketId))
+									.Except(tickets.Rows.Select(t => t.TicketId))
+									.ToList();
 
 			if (idHoles.Count == 0) {
 				holeMessage.Caption = "No Holes";
@@ -63,13 +64,11 @@ namespace ShomreiTorah.Rafflizer {
 				holeMessage.Appearance.ForeColor = Color.Red;
 				var message = new StringBuilder();
 
-				while (idHoles.Count > 0) {
-					var start = idHoles.Dequeue();
+				for (int i = 0; i < idHoles.Count; ) {
+					var start = idHoles[i];
 					int size = 1;
-					while (idHoles.Count > 0 && idHoles.Peek() == start + size) {
-						idHoles.Dequeue();
+					while (++i < idHoles.Count && idHoles[i] == start + size)
 						size++;
-					}
 
 					message.Append(message.Length == 0 ? "Holes: " : ", ");
 
