@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using DevExpress.Data;
 using DevExpress.XtraEditors;
 using ShomreiTorah.Data;
 using ShomreiTorah.Singularity;
@@ -91,6 +92,24 @@ namespace ShomreiTorah.Rafflizer {
 				if (components != null) components.Dispose();
 			}
 			base.Dispose(disposing);
+		}
+
+		private void gridView_CustomSummaryExists(object sender, CustomSummaryExistEventArgs e) {
+			e.Exists = true;
+		}
+		private void gridView_CustomSummaryCalculate(object sender, CustomSummaryEventArgs e) {
+			switch (e.SummaryProcess) {
+				case CustomSummaryProcess.Start:
+					e.TotalValue = 0;
+					break;
+				case CustomSummaryProcess.Calculate:
+					e.TotalValue = (int)e.TotalValue + 1;
+					break;
+				case CustomSummaryProcess.Finalize:
+					e.TotalValue = RaffleTicket.CalcPrice((int)e.TotalValue);
+					e.TotalValueReady = true;
+					break;
+			}
 		}
 	}
 }

@@ -140,17 +140,21 @@ namespace ShomreiTorah.Rafflizer {
             this.colPaid,
             this.colComments});
 			this.gridView.GridControl = this.grid;
+			this.gridView.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "", null, "({0} Tickets"),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "TicketId", null, "{0:c})")});
 			this.gridView.Name = "gridView";
 			this.gridView.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.Click;
 			this.gridView.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colTicketId, DevExpress.Data.ColumnSortOrder.Descending)});
+			this.gridView.CustomSummaryCalculate += new DevExpress.Data.CustomSummaryEventHandler(this.gridView_CustomSummaryCalculate);
+			this.gridView.CustomSummaryExists += new DevExpress.Data.CustomSummaryExistEventHandler(this.gridView_CustomSummaryExists);
 			// 
 			// colPerson
 			// 
 			this.colPerson.AllowKeyboardActivation = false;
 			this.colPerson.FieldName = "Person";
 			this.colPerson.Name = "colPerson";
-			this.colPerson.OptionsColumn.AllowEdit = false;
 			this.colPerson.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.True;
 			this.colPerson.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.True;
 			this.colPerson.OptionsColumn.ReadOnly = true;
@@ -170,7 +174,7 @@ namespace ShomreiTorah.Rafflizer {
 			this.colDateAdded.OptionsColumn.ReadOnly = true;
 			this.colDateAdded.Visible = true;
 			this.colDateAdded.VisibleIndex = 1;
-			this.colDateAdded.Width = 76;
+			this.colDateAdded.Width = 122;
 			// 
 			// colTicketId
 			// 
