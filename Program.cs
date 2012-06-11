@@ -37,7 +37,7 @@ namespace ShomreiTorah.Rafflizer {
 
 		protected override void RegisterSettings() {
 			Dialog.DefaultTitle = "Shomrei Torah Rafflizer";
-			OfficeSkins.Register();
+
 			SkinManager.EnableFormSkins();
 			UserLookAndFeel.Default.SkinName = "Office 2010 Blue";
 			RegisterRowDetail<Person>(p => new SimplePersonDetails(p).Show(MainForm));
